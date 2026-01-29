@@ -1,6 +1,10 @@
 import requests
 import pandas as pd
+import os
 import urllib3
+import gspread
+from gspread_dataframe import set_with_dataframe
+
 urllib3.disable_warnings()
 
 def get_hotweatherdata():
@@ -55,7 +59,34 @@ def get_hotweatherdata():
             hot_weather.append(dict_city)
     return hot_weather
 
-hot_weather_data = get_hotweatherdata()
-print(hot_weather_data)
+def put_hotweatherdata():
+    hot_weather_data = get_hotweatherdata()
+
+    GSHEET_NAME = 'AQUI Index'
+    TAB_NAME = 'hot_weather'
+
+    credentials_path = os.path.expanduser(
+        "cred/diamond-analysis-ac6758ca1ace.json"
+    )
+
+    gc = gspread.service_account(filename=credentials_path)
+    sh = gc.open(GSHEET_NAME)
+    worksheet = sh.worksheet(TAB_NAME)
+
+    existing_rows = len(worksheet.get_all_values())
+    start_row = existing_rows + 1
+
+    set_with_dataframe(
+        worksheet,
+        hot_weather_data,
+        row=start_row,
+        include_index=False,
+        include_column_header=False
+    )
+
+    print("Data loaded successfully to Google Sheets!")
+
+
+put_hotweatherdata()
 
 
