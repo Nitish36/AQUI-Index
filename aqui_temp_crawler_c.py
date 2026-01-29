@@ -1,0 +1,59 @@
+import requests
+import pandas as pd
+import urllib3
+urllib3.disable_warnings()
+
+def get_coldweatherdata():
+    url = "https://apiserver.aqi.in/aqi/getCityRankingsOfWorld?type=c&source=web"
+    headers = {
+        "accept-encoding":"gzip, deflate, br, zstd",
+        "authorization": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImlhdCI6MTc2OTIzMzc5NSwiZXhwIjoxNzY5ODM4NTk1fQ.PnsZkBQmiGHUQkHbqozm_ky-4Se9L4Wd0zBKjgQ0AC0",
+        "user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0"
+    }
+    resp = requests.get(url,headers=headers,verify=False)
+    json_data = resp.json()
+    dict_city = {}
+    dict_weather = {}
+    cold_weather = []
+    for data in json_data["data"]:
+        if data["rank"]<=100:
+            dict_city = {
+                "uid": data["uid"],
+                "status":json_data["status"],
+                "city":data["city"],
+                "state":data["state"],
+                "country":data["country"],
+                "rank":data["rank"]
+            }
+            for weather in data["weather"]:
+                dict_weather={
+                    "id":weather["_id"],
+                    "cloud":weather["cloud"],
+                    "condition":weather["condition"]["text"],
+                    "feelslike_c":weather["feelslike_c"],
+                    "feelslike_f":weather["feelslike_f"],
+                    "gust_kph":weather["gust_kph"],
+                    "gust_mph":weather["gust_mph"],
+                    "humidity":weather["humidity"],
+                    "last_updated":weather["last_updated"],
+                    "precip_in":weather["precip_in"],
+                    "precip_mm":weather["precip_mm"],
+                    "pressure_in":weather["pressure_in"],
+                    "pressure_mb":weather["pressure_mb"],
+                    "temp_c":weather["temp_c"],
+                    "temp_f":weather["temp_f"],
+                    "uv":weather["uv"],
+                    "vis_km":weather["vis_km"],
+                    "vis_miles":weather["vis_miles"],
+                    "wind_degree":weather["wind_degree"],
+                    "wind_dir":weather["wind_dir"],
+                    "wind_kph":weather["wind_kph"],
+                    "wind_mph":weather["wind_mph"],
+                    "uv_condition":weather["uv_condition"]["text"],
+                }
+            dict_city.update(dict_weather)
+            cold_weather.append(dict_city)
+    return cold_weather
+
+cold_weather_data = get_coldweatherdata()
+print(cold_weather_data)
