@@ -28,3 +28,4 @@ jobs:
           GSHEET_CREDENTIALS: ${{ secrets.GSHEET_CREDENTIALS }}
         run: |
           python aqui_temp_crawler_h.py
+          python aqui_temp_crawler_c.py
