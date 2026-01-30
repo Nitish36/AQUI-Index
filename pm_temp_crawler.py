@@ -1,6 +1,10 @@
 import requests
 import pandas as pd
+import os
 import urllib3
+import gspread
+from gspread_dataframe import set_with_dataframe
+import json
 urllib3.disable_warnings()
 
 def get_pm():
@@ -32,5 +36,44 @@ def get_pm():
             pm.append(dict_city)
     return pm
 
-pm_weather_data = get_pm()
-print(pm_weather_data)
+def put_pm():
+    aqui_data = get_pm()
+
+    # Convert list → DataFrame
+    aqui_df = pd.DataFrame(aqui_data)
+
+    GSHEET_NAME = 'AQUI Index'
+    TAB_NAME = 'aqui'
+
+    creds_json = os.environ.get("GSHEET_CREDENTIALS")
+    if not creds_json:
+        raise ValueError("GSHEET_CREDENTIALS not found")
+
+    creds_dict = json.loads(creds_json)
+    gc = gspread.service_account_from_dict(creds_dict)
+
+    sh = gc.open(GSHEET_NAME)
+    worksheet = sh.worksheet(TAB_NAME)
+
+    # 👇 ADD THIS LOGIC HERE
+    existing_rows = len(worksheet.get_all_values())
+
+    if existing_rows == 0:
+        start_row = 1
+        include_header = True
+    else:
+        start_row = existing_rows + 1
+        include_header = False
+
+
+    set_with_dataframe(
+        worksheet,
+        get_pm,
+        row=start_row,
+        include_index=False,
+        include_column_header=include_header
+    )
+
+    print("✅ Data loaded successfully to Google Sheets!")
+    
+put_pm()
