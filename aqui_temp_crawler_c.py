@@ -59,11 +59,11 @@ def get_coldweatherdata():
             cold_weather.append(dict_city)
     return cold_weather
 
-def put_hotweatherdata():
-    hot_weather_data = get_coldweatherdata()
+def put_coldweatherdata():
+    cold_weather_data = get_coldweatherdata()
 
     # Convert list → DataFrame
-    hot_weather_df = pd.DataFrame(hot_weather_data)
+    cold_weather_df = pd.DataFrame(cold_weather_data)
 
     GSHEET_NAME = 'AQUI Index'
     TAB_NAME = 'cold_weather'
@@ -91,7 +91,7 @@ def put_hotweatherdata():
 
     set_with_dataframe(
         worksheet,
-        hot_weather_df,
+        cold_weather_df,
         row=start_row,
         include_index=False,
         include_column_header=include_header
@@ -99,6 +99,7 @@ def put_hotweatherdata():
 
     print("✅ Data loaded successfully to Google Sheets!")
     
-put_hotweatherdata()
+put_coldweatherdata()
+
 
 
