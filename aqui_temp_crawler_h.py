@@ -65,11 +65,9 @@ def put_hotweatherdata():
     GSHEET_NAME = 'AQUI Index'
     TAB_NAME = 'hot_weather'
 
-    credentials_path = os.path.expanduser(
-        "cred/diamond-analysis-ac6758ca1ace.json"
-    )
+    credentials_json = os.getenv("GSHEET_CONNECTION")
 
-    gc = gspread.service_account(filename=credentials_path)
+    gc = gspread.service_account_from_dict(eval(credentials_json))
     sh = gc.open(GSHEET_NAME)
     worksheet = sh.worksheet(TAB_NAME)
 
@@ -88,5 +86,7 @@ def put_hotweatherdata():
 
 
 put_hotweatherdata()
+
+
 
 
