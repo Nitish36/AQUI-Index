@@ -43,7 +43,7 @@ def put_pm():
     aqui_df = pd.DataFrame(aqui_data)
 
     GSHEET_NAME = 'AQUI Index'
-    TAB_NAME = 'aqui'
+    TAB_NAME = 'pm'
 
     creds_json = os.environ.get("GSHEET_CREDENTIALS")
     if not creds_json:
@@ -77,3 +77,4 @@ def put_pm():
     print("✅ Data loaded successfully to Google Sheets!")
     
 put_pm()
+
