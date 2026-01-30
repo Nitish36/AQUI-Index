@@ -62,7 +62,7 @@ def put_hotweatherdata():
     hot_weather_df = pd.DataFrame(hot_weather_data)
 
     GSHEET_NAME = 'AQUI Index'
-    TAB_NAME = 'hot_weather'
+    TAB_NAME = 'cold_weather'
 
     creds_json = os.environ.get("GSHEET_CREDENTIALS")
     if not creds_json:
@@ -96,3 +96,4 @@ def put_hotweatherdata():
     print("✅ Data loaded successfully to Google Sheets!")
     
 put_hotweatherdata()
+
