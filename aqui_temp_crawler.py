@@ -1,6 +1,10 @@
 import requests
 import pandas as pd
+import os
 import urllib3
+import gspread
+from gspread_dataframe import set_with_dataframe
+import json
 urllib3.disable_warnings()
 
 def get_aqui():
@@ -33,4 +37,5 @@ def get_aqui():
     return aqui
 
 aqui_weather_data = get_aqui()
+
 print(aqui_weather_data)
