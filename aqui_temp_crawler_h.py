@@ -63,6 +63,9 @@ def get_hotweatherdata():
 def put_hotweatherdata():
     hot_weather_data = get_hotweatherdata()
 
+    # ✅ FIX: convert list → DataFrame
+    hot_weather_df = pd.DataFrame(hot_weather_data)
+
     GSHEET_NAME = 'AQUI Index'
     TAB_NAME = 'hot_weather'
 
@@ -81,15 +84,16 @@ def put_hotweatherdata():
 
     set_with_dataframe(
         worksheet,
-        hot_weather_data,
+        hot_weather_df,   # ✅ pass DataFrame
         row=start_row,
         include_index=False,
-        include_column_header=False
+        include_column_header=(existing_rows == 0)
     )
 
     print("✅ Data loaded successfully to Google Sheets!")
 
 put_hotweatherdata()
+
 
 
 
