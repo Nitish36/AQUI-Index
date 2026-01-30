@@ -4,6 +4,7 @@ import os
 import urllib3
 import gspread
 from gspread_dataframe import set_with_dataframe
+import json
 
 urllib3.disable_warnings()
 
@@ -89,6 +90,7 @@ def put_hotweatherdata():
     print("✅ Data loaded successfully to Google Sheets!")
 
 put_hotweatherdata()
+
 
 
 
