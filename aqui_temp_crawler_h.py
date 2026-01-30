@@ -80,14 +80,15 @@ def put_hotweatherdata():
     worksheet = sh.worksheet(TAB_NAME)
 
     # 👇 ADD THIS LOGIC HERE
-    existing_rows = len(worksheet.get_all_records())
+    existing_rows = len(worksheet.get_all_values())
 
     if existing_rows == 0:
         start_row = 1
         include_header = True
     else:
-        start_row = existing_rows + 2  # +1 for header, +1 for next row
+        start_row = existing_rows + 1
         include_header = False
+
 
     set_with_dataframe(
         worksheet,
@@ -101,6 +102,7 @@ def put_hotweatherdata():
 
 
 put_hotweatherdata()
+
 
 
 
