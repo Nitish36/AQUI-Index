@@ -55,5 +55,44 @@ def get_coldweatherdata():
             cold_weather.append(dict_city)
     return cold_weather
 
-cold_weather_data = get_coldweatherdata()
-print(cold_weather_data)
+def put_hotweatherdata():
+    hot_weather_data = get_coldweatherdata()
+
+    # Convert list → DataFrame
+    hot_weather_df = pd.DataFrame(hot_weather_data)
+
+    GSHEET_NAME = 'AQUI Index'
+    TAB_NAME = 'hot_weather'
+
+    creds_json = os.environ.get("GSHEET_CREDENTIALS")
+    if not creds_json:
+        raise ValueError("GSHEET_CREDENTIALS not found")
+
+    creds_dict = json.loads(creds_json)
+    gc = gspread.service_account_from_dict(creds_dict)
+
+    sh = gc.open(GSHEET_NAME)
+    worksheet = sh.worksheet(TAB_NAME)
+
+    # 👇 ADD THIS LOGIC HERE
+    existing_rows = len(worksheet.get_all_values())
+
+    if existing_rows == 0:
+        start_row = 1
+        include_header = True
+    else:
+        start_row = existing_rows + 1
+        include_header = False
+
+
+    set_with_dataframe(
+        worksheet,
+        hot_weather_df,
+        row=start_row,
+        include_index=False,
+        include_column_header=include_header
+    )
+
+    print("✅ Data loaded successfully to Google Sheets!")
+    
+put_hotweatherdata()
