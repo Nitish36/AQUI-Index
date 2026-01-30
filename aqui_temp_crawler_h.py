@@ -79,7 +79,7 @@ def put_hotweatherdata():
     sh = gc.open(GSHEET_NAME)
     worksheet = sh.worksheet(TAB_NAME)
 
-    existing_rows = len(worksheet.get_all_values())
+    existing_rows = len(worksheet.get_all_records())
     start_row = existing_rows + 1
 
     set_with_dataframe(
@@ -93,6 +93,7 @@ def put_hotweatherdata():
     print("✅ Data loaded successfully to Google Sheets!")
 
 put_hotweatherdata()
+
 
 
 
