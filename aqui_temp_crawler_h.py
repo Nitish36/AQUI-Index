@@ -65,9 +65,13 @@ def put_hotweatherdata():
     GSHEET_NAME = 'AQUI Index'
     TAB_NAME = 'hot_weather'
 
-    credentials_json = os.getenv("GSHEET_CONNECTION")
+    creds_json = os.environ.get("GSHEET_CREDENTIALS")
+    if not creds_json:
+        raise ValueError("GSHEET_CREDENTIALS not found")
 
-    gc = gspread.service_account_from_dict(eval(credentials_json))
+    creds_dict = json.loads(creds_json)
+    gc = gspread.service_account_from_dict(creds_dict)
+
     sh = gc.open(GSHEET_NAME)
     worksheet = sh.worksheet(TAB_NAME)
 
@@ -82,10 +86,10 @@ def put_hotweatherdata():
         include_column_header=False
     )
 
-    print("Data loaded successfully to Google Sheets!")
-
+    print("✅ Data loaded successfully to Google Sheets!")
 
 put_hotweatherdata()
+
 
 
 
