@@ -2,7 +2,7 @@ name: AQI Hot Weather Data Update
 
 on:
   schedule:
-    - cron: "0 */6 * * *"   # Runs every 6 hours
+    - cron: '30 16 * * *'   # Runs every 6 hours
   workflow_dispatch:       # Allows manual trigger
 
 jobs:
@@ -30,3 +30,4 @@ jobs:
           python aqui_temp_crawler_h.py
           python aqui_temp_crawler_c.py
           python aqui_temp_crawler.py
+          python pm_temp_crawler.py
