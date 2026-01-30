@@ -36,6 +36,46 @@ def get_aqui():
             aqui.append(dict_city)
     return aqui
 
-aqui_weather_data = get_aqui()
+def put_aqui():
+    aqui_data = get_aqui()
 
-print(aqui_weather_data)
+    # Convert list → DataFrame
+    aqui_df = pd.DataFrame(aqui_data)
+
+    GSHEET_NAME = 'AQUI Index'
+    TAB_NAME = 'aqui'
+
+    creds_json = os.environ.get("GSHEET_CREDENTIALS")
+    if not creds_json:
+        raise ValueError("GSHEET_CREDENTIALS not found")
+
+    creds_dict = json.loads(creds_json)
+    gc = gspread.service_account_from_dict(creds_dict)
+
+    sh = gc.open(GSHEET_NAME)
+    worksheet = sh.worksheet(TAB_NAME)
+
+    # 👇 ADD THIS LOGIC HERE
+    existing_rows = len(worksheet.get_all_values())
+
+    if existing_rows == 0:
+        start_row = 1
+        include_header = True
+    else:
+        start_row = existing_rows + 1
+        include_header = False
+
+
+    set_with_dataframe(
+        worksheet,
+        aqui_df,
+        row=start_row,
+        include_index=False,
+        include_column_header=include_header
+    )
+
+    print("✅ Data loaded successfully to Google Sheets!")
+    
+put_aqui()
+
+
