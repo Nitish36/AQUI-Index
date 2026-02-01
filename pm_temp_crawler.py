@@ -11,7 +11,7 @@ def get_pm():
     url = "https://apiserver.aqi.in/aqi/getAirQualityRanklistCountryAndCity?sensorname=pm25&type=2&limit=100&source=web"
     headers = {
         "accept-encoding":"gzip, deflate, br, zstd",
-        "authorization": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImlhdCI6MTc2OTIzMzc5NSwiZXhwIjoxNzY5ODM4NTk1fQ.PnsZkBQmiGHUQkHbqozm_ky-4Se9L4Wd0zBKjgQ0AC0",
+        "authorization": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImlhdCI6MTc2OTg2MjYzMSwiZXhwIjoxNzcwNDY3NDMxfQ.QU2NuioUOxA8dRl-UIKZ674Nr1naumENL7ZOpVsAcyg",
         "user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0"
     }
     resp = requests.get(url,headers=headers,verify=False)
@@ -77,5 +77,6 @@ def put_pm():
     print("✅ Data loaded successfully to Google Sheets!")
     
 put_pm()
+
 
 
