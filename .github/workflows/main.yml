@@ -27,7 +27,4 @@ jobs:
         env:
           GSHEET_CREDENTIALS: ${{ secrets.GSHEET_CREDENTIALS }}
         run: |
-          python aqui_temp_crawler_h.py
-          python aqui_temp_crawler_c.py
-          python aqui_temp_crawler.py
-          python pm_temp_crawler.py
+          python aqui_crawler.py
