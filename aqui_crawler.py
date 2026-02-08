@@ -78,7 +78,7 @@ def get_aqui_data():
                 "pm10": df["iaqi"]["pm10"],
                 "pm25": df["iaqi"]["pm25"],
                 "so2": df["iaqi"]["so2"],
-                "t": df["iaqi"].get("t") or 0
+                "t": df["iaqi"].get("t") or 0,
                 "clouds": df["weather"]["cloud"],
                 "condition": df["weather"]["condition"]["text"],
                 "feels_like_c": df["weather"]["feelslike_c"],
@@ -145,6 +145,7 @@ def put_aqui_data_to_gsheet():
 
 
 put_aqui_data_to_gsheet()
+
 
 
 
