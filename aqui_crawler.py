@@ -32,7 +32,7 @@ def get_aqui_data():
 
         headers = {
             "accept-encoding": "gzip, deflate, br, zstd",
-            "authorization": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImlhdCI6MTc3MTY1ODI2MCwiZXhwIjoxNzcyMjYzMDYwfQ.53U0_5otTfCKLk3MEnCwB11VQY218wIMKe0GgmRf3o8",
+            "authorization": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImlhdCI6MTc3MjMzNzg1MiwiZXhwIjoxNzcyOTQyNjUyfQ.v4IRKMSDjnuCPbDYen6vohYQFCf1kZdhxR8sTyH_hlc",
             "connection": "keep-alive",
             "origin": "https://aqi.in",
             "referer": "https://aqi.in/",
@@ -145,6 +145,7 @@ def put_aqui_data_to_gsheet():
 
 
 put_aqui_data_to_gsheet()
+
 
 
 
