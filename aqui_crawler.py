@@ -22,7 +22,7 @@ def get_aqui_data():
         "india/rajasthan/jaipur", "india/chhattisgarh/raipur",
         "india/assam/guwahati", "india/bihar/patna",
         "india/uttarakhand/dehradun", "india/himachal-pradesh/shimla",
-        "india/sikkim/gangtok"
+        "india/sikkim/gangtok","india/karnataka/mangalore"
     ]
 
     aqui_data = []
