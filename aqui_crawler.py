@@ -11,18 +11,11 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def get_aqui_data():
     slugs = [
-        "india/gujarat/ahmedabad", "india/karnataka/bangalore",
-        "india/tamil-nadu/chennai", "india/telangana/hyderabad",
-        "india/west-bengal/kolkata", "india/maharashtra/mumbai",
-        "india/delhi/new-delhi", "india/maharashtra/pune",
-        "india/uttar-pradesh/lucknow", "india/punjab/ludhiana",
-        "india/madhya-pradesh/bhopal", "india/haryana/gurgaon",
-        "india/kerala/kochi", "india/odisha/bhubaneswar",
-        "india/jharkhand/ranchi", "india/goa/madgaon",
-        "india/rajasthan/jaipur", "india/chhattisgarh/raipur",
-        "india/assam/guwahati", "india/bihar/patna",
-        "india/uttarakhand/dehradun", "india/himachal-pradesh/shimla",
-        "india/sikkim/gangtok","india/karnataka/mangalore","india/tamil-nadu/salem"
+        "india/gujarat/ahmedabad", "india/karnataka/bangalore","india/tamil-nadu/chennai", "india/telangana/hyderabad","india/west-bengal/kolkata", "india/maharashtra/mumbai",
+        "india/delhi/new-delhi", "india/maharashtra/pune","india/uttar-pradesh/lucknow", "india/punjab/ludhiana","india/madhya-pradesh/bhopal", "india/haryana/gurgaon",
+        "india/kerala/kochi", "india/odisha/bhubaneswar","india/jharkhand/ranchi", "india/goa/madgaon","india/rajasthan/jaipur", "india/chhattisgarh/raipur",
+        "india/assam/guwahati", "india/bihar/patna","india/uttarakhand/dehradun", "india/himachal-pradesh/shimla","india/sikkim/gangtok","india/karnataka/mangalore",
+        "india/tamil-nadu/salem","india/maharashtra/solapur"
     ]
 
     aqui_data = []
