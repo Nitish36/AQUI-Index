@@ -4,3 +4,4 @@ pandas
 io
 requests
 ssl
+pydeck
