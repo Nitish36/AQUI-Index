@@ -1,7 +1,6 @@
 streamlit
 matplotlib
 pandas
-io
 requests
 ssl
 pydeck
