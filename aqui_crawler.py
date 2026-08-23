@@ -25,7 +25,7 @@ def get_aqui_data():
 
         headers = {
             "accept-encoding": "gzip, deflate, br, zstd",
-            "authorization": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImlhdCI6MTc4Njg0NTA1NywiZXhwIjoxNzg3NDQ5ODU3fQ.dPKJnl5D8Wgj3Wlj-gxPzUk9xW2b9U6YQLM3O2cWU9o",
+            "authorization": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImlhdCI6MTc4NzE0MTIyNSwiZXhwIjoxNzg3NzQ2MDI1fQ.cVvuod3auT3-hVSx2iSRiO6JnYTAXAIDyLtqQ7Ypl1M",
             "connection": "keep-alive",
             "origin": "https://aqi.in",
             "referer": "https://aqi.in/",
